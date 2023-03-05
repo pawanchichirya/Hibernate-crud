@@ -7,6 +7,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/mysql lib"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hikari cp"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/hibernate-jars"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
