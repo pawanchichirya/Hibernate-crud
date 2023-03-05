@@ -8,9 +8,9 @@ public class PlayerServiceImpl implements IPlayerService{
 
 	private IPlayerDao playerDao;
 	@Override
-	public String addPlayer(Integer jersyNo, String name, Integer age, String team) {
+	public String addPlayer(String name, Integer age, String team) {
 		playerDao=PlayerDaoFactory.getPlayerDao();
-		return playerDao.addPlayer(jersyNo, name, age, team);
+		return playerDao.addPlayer(name, age, team);
 	}
 
 	@Override

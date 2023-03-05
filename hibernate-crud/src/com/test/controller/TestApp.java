@@ -132,9 +132,6 @@ public class TestApp {
 		// TODO Auto-generated method stub
 		IPlayerService playerService=PlayerServiceFactory.getPlayerService();
 		Scanner sc=new Scanner(System.in);
-		
-		System.out.println("Enter the jersy number of player");
-		Integer jersyNo=sc.nextInt();
 		System.out.println("Enter the name of player");
 		String name=sc.next();
 		System.out.println("Enter the age of player");
@@ -142,7 +139,7 @@ public class TestApp {
 		System.out.println("Enter the team of player");
 		String team=sc.next();
 		
-		String status=playerService.addPlayer(jersyNo, name, age, team);
+		String status=playerService.addPlayer(name, age, team);
 		if(status.equalsIgnoreCase("success"))
 			System.out.println("Record inserted successfully");
 		else

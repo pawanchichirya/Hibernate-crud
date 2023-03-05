@@ -2,13 +2,22 @@ package com.test.dto;
 
 import java.io.Serializable;
 
+import javax.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
 public class Player implements Serializable{
 	private static final long serialVersionUID=1L;
+	
+	@Id
+	@GenericGenerator(name = "gen1", strategy = "identity")
+	@GeneratedValue(generator = "gen1")
 	private Integer jersyNo;
 	private Integer age;
 	private String name;
 	private String team;
-	
 	
 	public Integer getJersyNo() {
 		return jersyNo;
