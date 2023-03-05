@@ -41,7 +41,11 @@ public class PlayerDaoImpl implements IPlayerDao {
 	}
 	@Override
 	public Player searchPlayer(Integer jersyNo) {
-		return null;
+		Player player=session.get(Player.class, jersyNo);
+		if(player!=null)
+			return player;
+		else
+			return null;
 	}
 	@Override
 	public String updatePlayer(Integer jersyNo, String name, Integer age, String team) {
@@ -49,7 +53,28 @@ public class PlayerDaoImpl implements IPlayerDao {
 	}
 	@Override
 	public String deletePlayer(Integer jersyNo) {
-		
-		return "failure";
+		boolean flag=false;
+		String status="";
+		Player player=session.get(Player.class, jersyNo);
+		Transaction transaction=session.beginTransaction();
+		try {
+			if(player!=null) {
+				session.delete(player);
+				flag=true;
+			}
+		} catch(HibernateException e) {
+			e.printStackTrace();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(flag) {
+				transaction.commit();
+				status="success";
+			} else {
+				transaction.rollback();
+				status="notfound";
+			}
+		}
+		return status;
 	}
 }
