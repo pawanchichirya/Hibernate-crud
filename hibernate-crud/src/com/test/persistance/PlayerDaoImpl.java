@@ -49,7 +49,32 @@ public class PlayerDaoImpl implements IPlayerDao {
 	}
 	@Override
 	public String updatePlayer(Integer jersyNo, String name, Integer age, String team) {
-		return "";
+		boolean flag=false;
+		String status="";
+		Player player=session.get(Player.class,jersyNo);
+		Transaction transaction=session.beginTransaction();
+		try {
+			if(player!=null) {
+				player.setName(name);
+				player.setAge(age);
+				player.setTeam(team);
+				session.save(player);
+				flag=true;
+			}
+		} catch(HibernateException e) {
+			e.printStackTrace();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(flag) {
+				transaction.commit();
+				status="success";
+			} else {
+				transaction.rollback();
+				status="failure";
+			}
+		}
+		return status;
 	}
 	@Override
 	public String deletePlayer(Integer jersyNo) {
